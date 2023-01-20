@@ -12,6 +12,7 @@ export default function Signup() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const {firebase} = useContext(FirebaseContext);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(email, password).then((result) => {
@@ -20,7 +21,8 @@ export default function Signup() {
           id: result.user.uid,
           username: username,
           phone: phone
-        }).then(() => {
+        }).then((result) => {
+          console.log(result);
             history.push('/login');
         })
       })
